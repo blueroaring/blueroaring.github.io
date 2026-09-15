@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="个人主页">
+<title>主页</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+
+  <!-- 自我介绍：内容来自 data.js 的 profile 字段 -->
+  <header id="profile"></header>
+
+  <!-- 研究兴趣：内容来自 data.js 的 interests 字段 -->
+  <section id="interests-section" hidden>
+    <h2>研究兴趣</h2>
+    <ul id="interests" class="tags"></ul>
+  </section>
+
+  <!-- 项目：手动条目（data.js 的 projects）+ 自动拉取的 GitHub 仓库 -->
+  <section id="projects-section" hidden>
+    <h2>项目</h2>
+    <div id="projects"></div>
+    <div id="repos"></div>
+    <p id="repos-note" class="note" hidden></p>
+  </section>
+
+  <!-- 论文与成果：内容来自 data.js 的 publications 字段，为空则整节不显示 -->
+  <section id="publications-section" hidden>
+    <h2>论文与成果</h2>
+    <ol id="publications" class="plain"></ol>
+  </section>
+
+  <footer id="footer"></footer>
+
+</main>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

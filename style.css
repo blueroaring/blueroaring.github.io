@@ -1,0 +1,162 @@
+/* ============================================================================
+ *  style.css —— 极简学术风，刻意不加动画、阴影、圆角卡片。
+ *  想换配色只改最上面 :root 里的变量即可。
+ * ==========================================================================*/
+
+:root {
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --link: #0b5cad;
+  --rule: #e4e4e4;
+  --bg: #ffffff;
+  --width: 720px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 3rem 1.25rem 4rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+               "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+main { max-width: var(--width); margin: 0 auto; }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1 {
+  margin: 0 0 .2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+
+h2 {
+  margin: 2.6rem 0 .9rem;
+  padding-bottom: .3rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+h3 {
+  margin: 0 0 .15rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+p { margin: 0 0 .9rem; }
+
+/* ---------- 顶部自我介绍 ---------- */
+
+.headline {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.headline img.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+
+.title {
+  margin: 0 0 .5rem;
+  color: var(--muted);
+}
+
+.contact {
+  margin: 0 0 1.4rem;
+  color: var(--muted);
+  font-size: .93rem;
+}
+
+.contact .sep { margin: 0 .45rem; color: #c9c9c9; }
+
+.bio p { margin: 0 0 .8rem; }
+
+/* ---------- 标签（研究兴趣） ---------- */
+
+ul.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul.tags li {
+  padding: .1rem .55rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+/* ---------- 项目 / 仓库列表 ---------- */
+
+.entry {
+  padding: 0 0 1rem;
+  margin: 0 0 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.entry:last-child { border-bottom: 0; margin-bottom: 0; }
+
+.entry .desc { margin: .15rem 0 .3rem; }
+
+.entry .facts {
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+.entry .facts .sep { margin: 0 .45rem; color: #d0d0d0; }
+
+.entry .facts .lang {
+  display: inline-block;
+  width: .62em;
+  height: .62em;
+  margin-right: .3rem;
+  border-radius: 50%;
+  background: #c4c4c4;
+  vertical-align: baseline;
+}
+
+.plain { margin: 0; padding-left: 1.2rem; }
+.plain li { margin-bottom: .8rem; }
+
+.note {
+  margin-top: .6rem;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+/* ---------- 底部 ---------- */
+
+footer {
+  margin-top: 3.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+/* ---------- 窄屏 ---------- */
+
+@media (max-width: 520px) {
+  body { padding: 2rem 1rem 3rem; font-size: 15.5px; }
+  h1 { font-size: 1.35rem; }
+  .headline img.avatar { width: 64px; height: 64px; }
+}
