@@ -10,7 +10,35 @@
 (function () {
   'use strict';
 
-  var SITE = window.SITE || {};
+  var SITE = window.SITE;
+
+  /**
+   * data.js 写坏时的兜底：与其整页白屏，不如直接说清楚哪里可能错了。
+   * data.js 允许（也推荐）在 GitHub 网页上直接改，而网页编辑器不做语法校验，
+   * 最容易犯的就是漏逗号、用了中文引号、括号没配对。
+   */
+  function showBrokenDataNotice() {
+    var host = document.querySelector('main') || document.body;
+    var box = document.createElement('div');
+    box.style.cssText = 'max-width:720px;margin:3rem auto;line-height:1.8;font-size:15px';
+
+    ['页面内容没能加载：data.js 里有语法错误。',
+     '常见原因：漏了逗号、用了中文引号「」或“ ”，或者括号 / 方括号没配对。',
+     '按 F12 打开浏览器控制台，第一条红色报错会指出出错的行号；改好并提交后即可恢复。',
+    ].forEach(function (text, index) {
+      var line = document.createElement('p');
+      line.textContent = text;
+      if (index === 0) line.style.fontWeight = '600';
+      box.appendChild(line);
+    });
+
+    host.insertBefore(box, host.firstChild);
+  }
+
+  if (!SITE || typeof SITE !== 'object') {
+    showBrokenDataNotice();
+    return;
+  }
 
   /* ---------------------------------------------------------------- 小工具 */
 
