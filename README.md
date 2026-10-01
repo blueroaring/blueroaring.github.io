@@ -12,7 +12,7 @@
 | 研究兴趣标签 | `data.js` 里的 `interests` |
 | 项目（增 / 删 / 改） | `data.js` 里的 `projects`（手动）和 `github`（自动） |
 | 论文与成果 | `data.js` 里的 `publications` |
-| 视频作品（B 站播放器 + 封面） | `data.js` 里的 `works` |
+| 推荐观看的视频（B 站播放器 + 封面） | `data.js` 里的 `works` |
 | 页面底部那句话 | `data.js` 里的 `footer` |
 | 配色、字体、页面宽度 | `style.css` 顶部的 `:root` 变量 |
 | 页面结构 / 渲染逻辑 | `index.html` / `app.js`（一般**不需要**动） |
@@ -44,7 +44,7 @@ bio: [
 - 项目**不在 GitHub 上**，或者想让它排在前面并写更长的介绍 → 在 `projects` 数组里加一条（模板同样在 `data.js` 的注释里，去掉行首 `//` 即可）。
 - 想让项目列表整个消失 → 把 `projects` 写成 `[]`，并把 `github.enabled` 设为 `false`。
 
-### 3. 加视频作品
+### 3. 加推荐观看的视频
 
 `works` 里一条 = 页面上一个 16:9 封面，**点一下才加载 B 站播放器**（省流量）。
 
