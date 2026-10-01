@@ -274,6 +274,88 @@
       });
   }
 
+  /* --------------------------------------------------------- 6.5 视频作品 */
+
+  function videoPlayer(item) {
+    var wrap = make('figure', 'video');
+
+    if (item.bvid) {
+      var iframe = document.createElement('iframe');
+      iframe.src = '//player.bilibili.com/player.html?bvid=' + encodeURIComponent(item.bvid) +
+        '&page=' + encodeURIComponent(item.page || 1) +
+        '&autoplay=1&high_quality=1&danmaku=0';
+      iframe.title = item.title || '视频';
+      iframe.loading = 'lazy';
+      iframe.scrolling = 'no';
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allowfullscreen', 'true');
+      iframe.setAttribute('allow', 'fullscreen; autoplay; encrypted-media; picture-in-picture');
+      wrap.appendChild(iframe);
+      return wrap;
+    }
+
+    if (item.poster) {
+      wrap.appendChild(videoPoster(item, null));
+      return wrap;
+    }
+
+    return null;
+  }
+
+  /** 封面 + 播放按钮：点击后才把 iframe 塞进去，默认不加载播放器。 */
+  function videoPoster(item, bvid) {
+    var host = make(bvid ? 'button' : 'div', 'player');
+    if (bvid) host.type = 'button';
+    if (item.title) host.setAttribute('aria-label', '播放：' + item.title);
+
+    var poster = document.createElement('img');
+    poster.src = item.poster;
+    poster.alt = '';
+    poster.loading = 'lazy';
+    host.appendChild(poster);
+
+    if (bvid) {
+      host.appendChild(make('span', 'play', '▶'));
+      host.addEventListener('click', function () {
+        var player = videoPlayer(item);
+        if (player && host.parentNode) host.parentNode.replaceChild(player, host);
+      });
+    }
+
+    return host;
+  }
+
+  function renderWorks() {
+    var list = (SITE.works || []).filter(function (item) { return item && item.title; });
+    if (!list.length) return;
+    var root = document.getElementById('works');
+    if (!root) return;
+    clear(root);
+
+    list.forEach(function (item) {
+      var box = make('div', 'work');
+
+      if (item.poster) box.appendChild(videoPoster(item, item.bvid));
+
+      box.appendChild(make('h3', null, item.title));
+      if (item.description) box.appendChild(make('p', 'desc', item.description));
+
+      var bits = [];
+      (item.tags || []).filter(Boolean).forEach(function (tag) { bits.push(tag); });
+      if (item.year) bits.push(item.year);
+      (item.links || []).forEach(function (pair) {
+        if (pair && pair.label && pair.url) bits.push(link(pair.url, pair.label));
+      });
+      if (bits.length) box.appendChild(factsLine(bits));
+
+      if (item.credit) box.appendChild(make('p', 'credit', item.credit));
+
+      root.appendChild(box);
+    });
+
+    reveal('works-section', true);
+  }
+
   /* --------------------------------------------------------- 6. 论文与成果 */
 
   function renderPublications() {
@@ -314,7 +396,7 @@
   /* ------------------------------------------------------------- 启动 */
 
   function boot() {
-    var runners = [renderProfile, renderInterests, renderPublications, renderFooter];
+    var runners = [renderProfile, renderInterests, renderWorks, renderPublications, renderFooter];
     runners.forEach(function (run) {
       try { run(); } catch (error) { console.error('[homepage]', error); }
     });

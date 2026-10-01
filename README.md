@@ -12,6 +12,7 @@
 | 研究兴趣标签 | `data.js` 里的 `interests` |
 | 项目（增 / 删 / 改） | `data.js` 里的 `projects`（手动）和 `github`（自动） |
 | 论文与成果 | `data.js` 里的 `publications` |
+| 视频作品（B 站播放器 + 封面） | `data.js` 里的 `works` |
 | 页面底部那句话 | `data.js` 里的 `footer` |
 | 配色、字体、页面宽度 | `style.css` 顶部的 `:root` 变量 |
 | 页面结构 / 渲染逻辑 | `index.html` / `app.js`（一般**不需要**动） |
@@ -43,7 +44,26 @@ bio: [
 - 项目**不在 GitHub 上**，或者想让它排在前面并写更长的介绍 → 在 `projects` 数组里加一条（模板同样在 `data.js` 的注释里，去掉行首 `//` 即可）。
 - 想让项目列表整个消失 → 把 `projects` 写成 `[]`，并把 `github.enabled` 设为 `false`。
 
-### 3. 加论文
+### 3. 加视频作品
+
+`works` 里一条 = 页面上一个 16:9 封面，**点一下才加载 B 站播放器**（省流量）。
+
+```js
+{
+  title: '标题',
+  description: '一两句说明',
+  bvid: 'BV1xCai6aE9g',        // B 站视频号；留空就只显示封面和外链，不嵌播放器
+  poster: 'pv-preview.jpg',    // 封面图，放仓库根目录即可
+  tags: ['PV'],
+  year: '2026',
+  links: [{ label: 'B 站观看', url: 'https://www.bilibili.com/video/BV1xCai6aE9g/' }],
+  credit: '作者与许可说明（显示在条目底部的小字）',
+},
+```
+
+不想显示这一节：把 `works` 写成 `[]`。
+
+### 4. 加论文
 
 在 `publications` 数组里按注释里的模板加一条；`links` 里可以放 PDF、代码等链接。
 

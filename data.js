@@ -116,6 +116,40 @@ window.SITE = {
   },
 
   /* ==========================================================================
+   *  4.5 视频作品（可留空：works: []）
+   *
+   *  这里放「想看视频」的条目：页面上渲染成一个 16:9 封面，点一下才加载播放器
+   *  （B 站是 iframe 播放器，默认不加载更省流量）。
+   *
+   *  字段：
+   *    title       标题
+   *    description 一两句说明
+   *    bvid        B 站视频号（BV 开头）。留空则只显示封面和链接，不嵌播放器
+   *    cid         可选，番剧/多 P 才需要
+   *    page        可选，多 P 视频的第几 P（默认 1）
+   *    poster      封面图（仓库里的相对路径或网图链接），留空则不显示封面
+   *    tags        标签
+   *    year        年份
+   *    links       外链列表 [{ label, url }]
+   *    credit      署名/许可说明（放在条目底部的小字）
+   * ========================================================================*/
+  works: [
+    {
+      title: 'world.execute(me); · 大肥鱼眼中的 world.execute(me)',
+      description: '用代码逐帧渲染的 TUI 风格 PV（非官方同人）：左边是 DeepSeek Harness 的聊天窗口，「她」和你的对话；右边是运行着她的那个世界。音乐：Mili - world.execute(me);',
+      bvid: 'BV1xCai6aE9g',
+      poster: 'pv-preview.jpg',
+      tags: ['PV', '同人', '代码渲染'],
+      year: '2026',
+      links: [
+        { label: 'B 站观看', url: 'https://www.bilibili.com/video/BV1xCai6aE9g/' },
+        { label: 'GitHub 仓库', url: 'https://github.com/MisakaZentai/world-execute-me-dsh-pv' },
+      ],
+      credit: '作者 MisakaZentai（代码 MIT；鲸鱼娘立绘与改编部分 CC BY-NC-SA 4.0）。非官方同人作品，与 DeepSeek、Mili 无从属关系；成片含 AI 生成画面。',
+    },
+  ],
+
+  /* ==========================================================================
    *  5. 论文 / 成果列表。没有就保持空数组：publications: []
    *
    *  加一条：复制下面的模板，去掉行首的 // 。
